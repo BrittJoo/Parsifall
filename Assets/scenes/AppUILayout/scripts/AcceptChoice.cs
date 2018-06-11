@@ -85,11 +85,6 @@ public class AcceptChoice : MonoBehaviour {
 
    public void ClickingTask()
     {
-        if(currentTextIndex == 5)
-        {
-            //break
-            StartCoroutine(Wait(50));
-        }
         print("op knop geklikt");
         //check which square
         lastStatement = currentStatement;
@@ -99,6 +94,13 @@ public class AcceptChoice : MonoBehaviour {
         Debug.Log(statementText[currentTextIndex]);
         Debug.Log("de currentTextIndex vastgesteld");
         currentTextIndex++;
+        Debug.Log(currentTextIndex);
+        if (currentTextIndex == 5)
+        {
+            //break
+            Debug.Log("vijfde statement hier");
+            StartCoroutine(Wait(50));
+        }
         // kijk welke catagorie is geklikt
         // sla de punten op
         // ga naar de volgende stelling
@@ -112,11 +114,6 @@ public class AcceptChoice : MonoBehaviour {
     private void OnMouseExit()
     {
         overMouse = false;
-    }
-
-    private void OnGUI()
-    {
-        
     }
 
     public IEnumerator Wait(float waitTime)
