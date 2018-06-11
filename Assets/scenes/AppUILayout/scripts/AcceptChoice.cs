@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+using UnityEngine.UI;
+
 public class AcceptChoice : MonoBehaviour {
 
+    public string[] statementText;//= new string[] {"Statement1", "Statement2", "Statement3"};
     public bool overMouse;
+    private paddle paddle;
+    public Text StatementTextObject;
   //  List<int> statement = new List<int>();
     int currentStatement;
-  //  int currentChar;
-  //  int character;
+    int lastStatement;
+    int snapPoint;
+    int currentTextIndex = 0;
+    //  int currentChar;
+    //  int character;
 
     //private var wave1 : List.<String> = new List.<String>();
-   // private int waveArray = List.< List.< String > > = new List.< List.< String > > ();
+    // private int waveArray = List.< List.< String > > = new List.< List.< String > > ();
 
     [SerializeField] List<int> statement = new List<int>();
     [SerializeField] List<int> character = new List<int>();
@@ -24,7 +31,7 @@ public class AcceptChoice : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
+        paddle = FindObjectOfType<paddle>();
         int indexChar = character.IndexOf(120);
        // List.IndexOf(character);
 
@@ -65,21 +72,33 @@ public class AcceptChoice : MonoBehaviour {
                 answers.Add(i);
             }
         }
-            currentStatement = 1;
+        currentStatement = 1;
+        lastStatement = 1;
         // xml, 
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+       
+    }
 
-    void TaskOnClick()
+   public void ClickingTask()
     {
+        if(currentTextIndex == 5)
+        {
+            //break
+            StartCoroutine(Wait(50));
+        }
         print("op knop geklikt");
         //check which square
+        lastStatement = currentStatement;
+        //StatementTextObject set text to array.
         currentStatement++;
+        StatementTextObject.text = statementText[currentTextIndex];
+        Debug.Log(statementText[currentTextIndex]);
+        Debug.Log("de currentTextIndex vastgesteld");
+        currentTextIndex++;
         // kijk welke catagorie is geklikt
         // sla de punten op
         // ga naar de volgende stelling
@@ -93,5 +112,15 @@ public class AcceptChoice : MonoBehaviour {
     private void OnMouseExit()
     {
         overMouse = false;
+    }
+
+    private void OnGUI()
+    {
+        
+    }
+
+    public IEnumerator Wait(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
     }
 }

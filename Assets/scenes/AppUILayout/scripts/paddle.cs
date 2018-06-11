@@ -6,9 +6,9 @@ public class paddle : MonoBehaviour
 {
 
     public float mouse_pos;
-    private bool isdragging;
+   // private bool isdragging;
     private bool canSnap;
-    [SerializeField] private int snapPoint;
+    public int snapPoint;
 
     private bool overMouse;
 
@@ -35,7 +35,7 @@ public class paddle : MonoBehaviour
             paddle_pos.x = Mathf.Clamp(mouse_pos, 1, 16.75f);//1f, 12.35f); 
             paddle_pos.z = 1;
             this.transform.position = paddle_pos;
-            isdragging = true;
+           // isdragging = true;
         }
 
         if (Input.GetMouseButtonUp(0))
