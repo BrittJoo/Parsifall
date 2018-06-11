@@ -6,6 +6,6 @@ ProjectSettings/
 UnityPackageManager/manifest.json
 obj/
 packages/
-Temp/
+
 *.csproj
 *.lock
