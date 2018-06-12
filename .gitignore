@@ -9,3 +9,4 @@ packages/
 
 *.csproj
 *.lock
+Temp/UnityLockfile
