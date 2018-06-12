@@ -533,23 +533,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statementText:
-  - Statement1
-  - Statement2
-  - Statement3
-  - Statement4
-  - Statement5
-  - Statement6
-  - Statement7
-  - Statement8
-  - Statement9
-  - Statement10
-  - Statement11
-  - Statement12
-  - Statement13
-  - Statement14
-  - Statement15
-  - Statement16
-  - Statement17
+  - Statement 1
+  - Statement 2
+  - Statement 3
+  - Statement 4
+  - Statement 5
+  - Statement 6
+  - Statement 7
+  - Statement 8
+  - Statement 9
+  - Statement 10
+  - Statement 11
+  - Statement 12
+  - Statement 13
+  - Statement 14
+  - Statement 15
+  - Statement 16
+  - Statement 17
   overMouse: 1
   StatementTextObject: {fileID: 14855452}
   statement: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -744,7 +744,7 @@ SpriteRenderer:
   m_Size: {x: 14, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!4 &732891793
 Transform:

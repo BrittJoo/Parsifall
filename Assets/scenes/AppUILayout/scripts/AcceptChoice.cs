@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+using UnityEngine.UI;
+
 public class AcceptChoice : MonoBehaviour {
 
+    public string[] statementText;//= new string[] {"Statement1", "Statement2", "Statement3"};
     public bool overMouse;
+    private paddle paddle;
+    public Text StatementTextObject;
   //  List<int> statement = new List<int>();
     int currentStatement;
-  //  int currentChar;
-  //  int character;
+    int lastStatement;
+    int snapPoint;
+    int currentTextIndex = 0;
+    bool canClickNext = true;
+    //  int currentChar;
+    //  int character;
 
     //private var wave1 : List.<String> = new List.<String>();
-   // private int waveArray = List.< List.< String > > = new List.< List.< String > > ();
+    // private int waveArray = List.< List.< String > > = new List.< List.< String > > ();
 
     [SerializeField] List<int> statement = new List<int>();
     [SerializeField] List<int> character = new List<int>();
@@ -22,9 +30,9 @@ public class AcceptChoice : MonoBehaviour {
     //public float[] statementPoints;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-
+        paddle = FindObjectOfType<paddle>();
         int indexChar = character.IndexOf(120);
        // List.IndexOf(character);
 
@@ -52,7 +60,7 @@ public class AcceptChoice : MonoBehaviour {
 
         foreach (int o in statement)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i< 6; i++)
             {
                 character.Add(i);
             }
@@ -60,32 +68,55 @@ public class AcceptChoice : MonoBehaviour {
 
         foreach (int p in character)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i< 4; i++)
             {
                 answers.Add(i);
             }
         }
-            currentStatement = 1;
+        currentStatement = 1;
+        lastStatement = 1;
         // xml, 
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
-		
-	}
+       
+    }
 
-    void TaskOnClick()
+   public void ClickingTask()
     {
-        print("op knop geklikt");
-        //check which square
-        currentStatement++;
+        if (canClickNext)
+        {
+            print("op knop geklikt");
+            //check which square
+            lastStatement = currentStatement;
+            //StatementTextObject set text to array.
+            currentStatement++;
+            StatementTextObject.text = statementText[currentTextIndex];
+            Debug.Log(statementText[currentTextIndex]);
+            Debug.Log("de currentTextIndex vastgesteld");
+            currentTextIndex++;
+            Debug.Log(currentTextIndex);
+        }
+
+        if (currentTextIndex == 5)
+        {
+            //break
+            Debug.Log("vijfde statement hier");
+            canClickNext = false;
+            Debug.Log(canClickNext);
+            this.gameObject.GetComponent<Image>().enabled = false;
+            StartCoroutine(Wait(500));
+            this.gameObject.GetComponent<Image>().enabled = true;
+            canClickNext = true;
+        }
         // kijk welke catagorie is geklikt
         // sla de punten op
         // ga naar de volgende stelling
     }
 
-    void OnMouseOver()
+   /* void OnMouseOver()
     {
         overMouse = true;
     }
@@ -93,5 +124,12 @@ public class AcceptChoice : MonoBehaviour {
     private void OnMouseExit()
     {
         overMouse = false;
+    }*/
+
+    public IEnumerator Wait(float waitTime)
+    {
+        print("in coroutine");
+        yield return new WaitForSeconds(waitTime);
+        print("beyond coroutine");
     }
 }
